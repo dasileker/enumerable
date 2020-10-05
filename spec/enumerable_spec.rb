@@ -94,8 +94,16 @@ describe Enumerable do
     end
   end
 
-  describe '#my_count' do
-    
+  describe '#my_map' do
+    it 'Returns an array of results of running a block with each item' do
+      expect(test_range.my_map { |i| i * i }).to eq([1, 4, 9, 16])
+    end
+    it 'Returns an array of results of running a block with each item 2' do
+      expect(test_array_numbers.my_map { |i| i * 2 }).to eq([22, 4, 6, 112])
+    end
+    it 'Returns an array of the length of each item in the array' do
+      expect(test_array_string.my_map { |i| i.length }).to eq([3, 4, 3])
+    end
   end
 
 end
