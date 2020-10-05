@@ -62,6 +62,39 @@ describe Enumerable do
     it 'Return true if any item of the array is equal to argument' do
       expect(test_array_numbers.my_any?(11)).to eq(true)
     end
+    it 'Returns true if all items length in an array is bigger or equal than 4' do
+      expect(test_array_string.my_any? { |word| word.length >= 4} ).to eq(true)
+    end
+  end
+
+  describe '#my_none?' do
+    it 'Returns false if none of the items returns false in iven test' do
+      expect([1, 3.14, 42].my_none?(Float)).to eq(false)
+    end
+    it 'Return true if all items in the array are a string' do
+      expect(test_array_numbers.my_none?(String)).to eql(true)
+    end
+    it 'Returns false in none of the items of the range plus two are bigger than 5' do
+      expect(test_range.my_none? { |i| (i + 2) > 5 }).to eq(false)
+    end
+    it 'Returns true if none of the items is equal to argument' do
+      expect(test_array_string.my_none?('bee')).to eq(true)
+    end
+    it 'Return false if one if the items of the array is false or nill' do
+      expect(test_array_bool.my_none?).to eq(false)
+    end
+  end
+
+  describe '#my_count' do
+    it 'Return the number of items that return true for a given test' do
+      expect(test_array_numbers.my_count { |x| x > 10 }).to eq(2)
+    end
+    it 'Returns the number of items that are equal to the argument' do
+      expect(test_array_string.my_count('ant')).to eq(1)
+    end
+  end
+
+  describe '#my_count' do
     
   end
 
