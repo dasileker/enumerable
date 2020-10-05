@@ -104,6 +104,21 @@ describe Enumerable do
     it 'Returns an array of the length of each item in the array' do
       expect(test_array_string.my_map { |i| i.length }).to eq([3, 4, 3])
     end
+    it 'Expect enumerator when no block is given' do
+      expect(test_array_numbers.my_map).to be_kind_of(Enumerator)
+    end
+  end
+
+  describe '#my_inject' do
+    it 'Combines all items by applying binary operation' do
+      expect(test_range.inject { |sum, n| sum + n }).to eql(10)
+    end
+    it 'Combines all items by the argument operator' do
+      expect(test_array_numbers.inject(:*)).to eql(3696)
+    end
+    it 'Combines all items including the number of the argumetn applying the argument operator' do
+      expect(test_array_numbers.inject(2, :+)).to eql(74)
+    end
   end
 
 end
